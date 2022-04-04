@@ -6,8 +6,19 @@
 </head>
 <body>
 <form th:method="POST" th:action="@{/people}" th:object="${person}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name">
+    <label for="firstName">Enter first name: </label>
+    <input type="text" th:field="*{firstName}" id="firstName">
+
+    <label for="lastName">Enter last name: </label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+
+    <label for="position">Enter position: </label>
+    <input type="text" th:field="*{position}" id="position">
+
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email">
+
+
     <br/>
     <input type="submit" value="Create"/>
 </form>

@@ -6,12 +6,30 @@
 </head>
 <body>
 
-<div th:each="person : ${people}">
-    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a>
-</div>
-<br/>
-<br/>
-
 <a href="/people/new">Create new person</a>
+<table>
+    <thead>
+    <tr>
+        <th th:text="id">id</th>
+        <th th:text="Имя">firstName</th>
+        <th th:text="Фамилия">lastName</th>
+        <th th:text="Должность">position</th>
+        <th th:text="Почта">email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${people.empty}">
+        <td colspan="5" >No people available</td>
+    </tr>
+    <tr th:each="person : ${people}">
+        <td><sp th:text="${person.getId}">id</sp></td>
+        <td th:text="${person.getFirstName()}">firstName</td>
+        <td th:text="${person.getLastName()}">lastName</td>
+        <td th:text="${person.getPosition()}">position</td>
+        <td th:text="${person.getEmail()}">email</td>
+        <td><a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
