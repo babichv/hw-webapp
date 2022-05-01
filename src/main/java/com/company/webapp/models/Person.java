@@ -4,19 +4,19 @@ public class Person {
     private int id;
     private String firstName;
     private String lastName;
+    private String phone;
     private String email;
-    private String position;
 
 
     public Person(){
 
     }
 
-    public Person(int id, String firstName, String lastName, String position, String email) {
+    public Person(int id, String firstName, String lastName, String phone, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.position = position;
+        this.phone = phone;
         this.email = email;
 
     }
@@ -45,12 +45,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
-        return position;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {

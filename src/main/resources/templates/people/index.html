@@ -2,32 +2,39 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Все люди</title>
+    <title>title</title>
+    <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+<form th:method="GET" th:action="@{/people/2}">
+    <input type="text" placeholder="Введите id">
+    <input type="submit" value="Поиск">
+</form>
 
-<a href="/people/new">Create new person</a>
+<a href="/people/new" class="button">Добавить клиента</a>
+<h1>Клиенты</h1>
 <table>
     <thead>
     <tr>
         <th th:text="id">id</th>
         <th th:text="Имя">firstName</th>
         <th th:text="Фамилия">lastName</th>
-        <th th:text="Должность">position</th>
+        <th th:text="Телефон">phone</th>
         <th th:text="Почта">email</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
     <tr th:if="${people.empty}">
-        <td colspan="5" >No people available</td>
+        <td colspan="6" >No people available</td>
     </tr>
     <tr th:each="person : ${people}">
-        <td><sp th:text="${person.getId}">id</sp></td>
-        <td th:text="${person.getFirstName()}">firstName</td>
-        <td th:text="${person.getLastName()}">lastName</td>
-        <td th:text="${person.getPosition()}">position</td>
-        <td th:text="${person.getEmail()}">email</td>
-        <td><a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a></td>
+        <td><span th:text="${person.getId}">id</span></td>
+        <td><span th:text="${person.getFirstName()}">firstName</span></td>
+        <td ><span th:text="${person.getLastName()}">lastName</span></td>
+        <td><span th:text="${person.getPhone()}">phone</span></td>
+        <td><span th:text="${person.getEmail()}">email</span></td>
+        <td><span><a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a></span></td>
     </tr>
     </tbody>
 </table>
