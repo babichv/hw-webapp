@@ -1,7 +1,15 @@
-package com.company.webapp.models;
+package com.company.webapp.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Person {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
     private String phone;
@@ -12,7 +20,7 @@ public class Person {
 
     }
 
-    public Person(int id, String firstName, String lastName, String phone, String email) {
+    public Person(Long id, String firstName, String lastName, String phone, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,11 +29,11 @@ public class Person {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

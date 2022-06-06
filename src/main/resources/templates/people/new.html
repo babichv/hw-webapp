@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>New client</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<form th:method="POST" th:action="@{/people}" th:object="${person}">
-    <label for="firstName">Enter first name: </label>
+
+<form class="clients__form new__form" th:method="POST" th:action="@{/people}" th:object="${person}">
+    <h3>Enter all fields</h3>
+    <label for="firstName">First Name: </label>
     <input type="text" th:field="*{firstName}" id="firstName">
     <br>
-    <label for="lastName">Enter last name: </label>
+    <label for="lastName">Last Name: </label>
     <input type="text" th:field="*{lastName}" id="lastName">
     <br>
-    <label for="phone">Enter phone: </label>
+    <label for="phone">Phone: </label>
     <input type="text" th:field="*{phone}" id="phone">
     <br>
-    <label for="email">Enter email: </label>
+    <label for="email">Email: </label>
     <input type="text" th:field="*{email}" id="email">
     <br/>
-    <input type="submit" value="Create"/>
+    <div class="new__btn">
+        <input type="submit" value="Save"/>
+    </div>
+    
 </form>
 </body>
 </html>

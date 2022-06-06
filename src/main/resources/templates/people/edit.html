@@ -2,26 +2,30 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" >
-    <title>Edit person</title>
+    <title>Edit</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
-    <label for="firstName">Имя: </label>
-    <input type="text" th:field="*{firstName}" id="firstName">
+    <div class="edit" >
+<form   th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
+    <label for="firstName">First Name: </label>
+    <input class="edit__input" type="text" th:field="*{firstName}" id="firstName">
     <br>
-    <label for="lastName">Фамилия: </label>
-    <input type="text" th:field="*{lastName}" id="lastName">
+    <label for="lastName">Last Name: </label>
+    <input class="edit__input" type="text" th:field="*{lastName}" id="lastName">
     <br>
-    <label for="phone">Должность: </label>
-    <input type="text" th:field="*{phone}" id="phone">
+    <label for="phone">Phone: </label>
+    <input class="edit__input" type="text" th:field="*{phone}" id="phone">
     <br>
-    <label for="email">Почта: </label>
-    <input type="text" th:field="*{email}" id="email">
+    <label for="email">Email: </label>
+    <input class="edit__input" type="text" th:field="*{email}" id="email">
     <br/>
-    <input type="submit" value="Update"/>
+    <input class="edit-del__btn" type="submit" value="Update"/>
 </form>
-<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
-    <input type="submit" value="Delete">
+<form class="edit-pr" th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+    <input class="edit-del__btn edit-pa" type="submit" value="Delete">
 </form>
+</div>
 </body>
 </html>

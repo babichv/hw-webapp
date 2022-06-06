@@ -1,7 +1,8 @@
-package com.company.webapp.controllers;
+package com.company.webapp.controller;
 
-import com.company.webapp.dao.PersonDAO;
-import com.company.webapp.models.Person;
+import com.company.webapp.entity.Person;
+import com.company.webapp.exception.PeopleNotFoundException;
+import com.company.webapp.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,24 +12,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PersonDAO personDAO;
-
     @Autowired
-    public PeopleController(PersonDAO personDAO) {
-        this.personDAO = personDAO;
-    }
+    PersonService personService;
 
-    @GetMapping()
-    public String index(Model model){
+    @GetMapping
+    public String index(Model model) throws PeopleNotFoundException {
         // Получим всех людей из Dao и передадим на отображение в представление
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", personService.findAll());
         return "people/index";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model){
+    @GetMapping("/search")
+    public String show(@RequestParam(value = "phone") String phone, Model model) throws PeopleNotFoundException {
         // Получаем одного человека по его ID из DAO и передадим на отображение в представление
-        model.addAttribute("person", personDAO.show(id));
+        Person person = personService.findByPhone(phone);
+        model.addAttribute("person", person);
         return "people/show";
     }
 
@@ -42,25 +40,25 @@ public class PeopleController {
 
     @PostMapping()
     public String create(@ModelAttribute("person") Person person){
-        personDAO.save(person);
+        personService.create(person);
         return "redirect:/people";
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id){
-        model.addAttribute("person", personDAO.show(id));
+    public String edit(Model model, @PathVariable("id") Long id) throws PeopleNotFoundException {
+        model.addAttribute("person", personService.findById(id));
         return "people/edit";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
-        personDAO.update(id, person);
+    public String update(@ModelAttribute("person") Person person, @PathVariable("id") Long id){
+        personService.update(id, person);
         return "redirect:/people";
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id){
-        personDAO.delete(id);
+    public String delete(@PathVariable("id") Long id){
+        personService.delete(id);
         return "redirect:/people";
     }
 }

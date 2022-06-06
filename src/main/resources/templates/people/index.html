@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>title</title>
-    <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-<form th:method="GET" th:action="@{/people/2}">
-    <input type="text" placeholder="Введите id">
-    <input type="submit" value="Поиск">
-</form>
+   <div class="flex clients__search">
+        <form class="clients__form" th:method="GET" th:action="@{/people/search}">
+            <input type="text" th:name="phone" placeholder="Enter phone number">
+            <input type="submit" value="search">
+        </form>
 
-<a href="/people/new" class="button">Добавить клиента</a>
-<h1>Клиенты</h1>
-<table>
+        <a href="/people/new" class="button">Add client</a>
+   </div>
+   <h1 class="clients__btn">Clients</h1>
+        
+<table class="clients-info">
     <thead>
-    <tr>
+    <tr class="clients-info__tables">
         <th th:text="id">id</th>
-        <th th:text="Имя">firstName</th>
-        <th th:text="Фамилия">lastName</th>
-        <th th:text="Телефон">phone</th>
-        <th th:text="Почта">email</th>
+        <th th:text="firstname">firstName</th>
+        <th th:text="lastname">lastName</th>
+        <th th:text="phone">phone</th>
+        <th th:text="email">email</th>
         <th></th>
     </tr>
     </thead>
